@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="63" started-at="2018-12-20T06:52:52Z" finished-at="2018-12-20T06:52:52Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="63" started-at="2018-12-20T06:52:52Z" finished-at="2018-12-20T06:52:52Z">
+      <class name="com.db.PerfectoReportAnalyser.UnitTestPerfectoAnalyser">
+        <test-method status="PASS" signature="loginTest()[pri:0, instance:com.db.PerfectoReportAnalyser.UnitTestPerfectoAnalyser@59494225]" name="loginTest" duration-ms="29" started-at="2018-12-20T12:22:52Z" finished-at="2018-12-20T12:22:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+      </class> <!-- com.db.PerfectoReportAnalyser.UnitTestPerfectoAnalyser -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

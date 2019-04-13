@@ -12,10 +12,11 @@ import javax.net.ssl.X509TrustManager;
 
 import org.pmw.tinylog.Logger;
 
-import com.db.ALMInfrastructure.Helper;
 import com.db.PerfectoReportAnalyser.PerfectoAPIHandler;
 import com.db.PerfectoReportAnalyser.PerfectoMethodHelper;
 import com.db.PerfectoReportAnalyser.PerfectoReportParser;
+
+import helpers.Helper;
 
 public class PerfectoIntegrationRunner {
 

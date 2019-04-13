@@ -15,7 +15,7 @@ import java.util.Properties;
 
 import org.pmw.tinylog.Logger;
 
-import com.db.ALMInfrastructure.Helper;
+import helpers.Helper;
 
 public class PerfectoAPIHandler {
 

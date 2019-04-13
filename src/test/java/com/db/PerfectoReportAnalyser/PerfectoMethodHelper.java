@@ -3,7 +3,7 @@ package com.db.PerfectoReportAnalyser;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
-import com.db.ALMInfrastructure.Helper;
+import helpers.Helper;
 
 public class PerfectoMethodHelper {
 	

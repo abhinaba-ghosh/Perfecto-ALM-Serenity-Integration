@@ -16,12 +16,12 @@ import org.codehaus.jackson.JsonToken;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.pmw.tinylog.Logger;
 
-import com.db.ALMMethodsImplementers.ALMTestCaseCreator;
-import com.db.ALMMethodsImplementers.ALMTestConfigurationCreator;
-import com.db.ALMMethodsImplementers.ALMTestInstanceCreator;
-import com.db.ALMMethodsImplementers.ALMTestRunCreator;
-import com.db.ALMMethodsImplementers.ALMTestSetCreator;
-import com.db.ALMMethodsImplementers.ALMXMethodHelper;
+import components.ALMTestCaseCreator;
+import components.ALMTestConfigurationCreator;
+import components.ALMTestInstanceCreator;
+import components.ALMTestRunCreator;
+import components.ALMTestSetCreator;
+import helpers.ALMCommonHelper;
 
 public class PerfectoReportParser {
 
@@ -228,7 +228,7 @@ public class PerfectoReportParser {
 									"hp.qc.run.MANUAL", PerefctoExeDuration);
 							Logger.info("test run id creted/found:" + PerfectoTestRunId);
 
-							ALMXMethodHelper.attachURLtoALMRunID(PerfectoTestRunId, perfectoReportUrl, PerfectoRunName);
+							ALMCommonHelper.attachURLtoALMRunID(PerfectoTestRunId, perfectoReportUrl, PerfectoRunName);
 
 							String queryParam = "test-instances/" + PerfectoTestInstanceID;
 							updateStatusOfTestInstance = ALMTestInstanceCreator.updateTestInstanceStatus(queryParam,
@@ -251,7 +251,7 @@ public class PerfectoReportParser {
 					testcaseNameList.addAll(testcaseNameList_tempSet);
 					for (String testcaseElement : testcaseNameList) {
 						delete_query = "test-configs?query={name[=\"" + testcaseElement + "\"]}";
-						String response = ALMXMethodHelper.deleteResource(delete_query);
+						String response = ALMCommonHelper.deleteResource(delete_query);
 						Logger.info("Delete test config response:"+response);
 					}
 

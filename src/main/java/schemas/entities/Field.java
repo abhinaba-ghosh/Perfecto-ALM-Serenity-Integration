@@ -13,7 +13,7 @@ public class Field {
 	@XmlAttribute (name="Name")
 	private String Name;
 	
-	@XmlElement
+	@XmlElement (nillable=true)
 	private String Value;
 
 	public Field() {

@@ -11,7 +11,7 @@ import schemas.entities.Entity;
 import schemas.entities.Field;
 import schemas.entities.Fields;
 
-public class TestInstanceWrapper {
+public class TestInstance {
 
 	public static String prepareXml(String testSetId, String testId, String tester, String executionStatus)
 			throws Exception {

@@ -11,17 +11,19 @@ import schemas.entities.Entity;
 import schemas.entities.Field;
 import schemas.entities.Fields;
 
-public class TestPlanFolderWrapper {
-	
-	public static String prepareXml(String parentFolderId, String testFolderName, String description) throws Exception {
+public class TestConfig {
+
+	public static String prepareXml(String parentTsetId, String configName, String owner, String description) throws Exception {
 
 		List<Field> field = new ArrayList<Field>();
 
-		field.add(new Field("parent-id", parentFolderId));
+		field.add(new Field("parent-id", parentTsetId));
+		field.add(new Field("data-state", "0"));
+		field.add(new Field("name", configName));
+		field.add(new Field("owner", owner));
 		field.add(new Field("description", description));
-		field.add(new Field("name", testFolderName));
 
-		Entity entity = new Entity("test-folder", new Fields(field));
+		Entity entity = new Entity("test-config", new Fields(field));
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(Entity.class);
 		Marshaller m = jaxbContext.createMarshaller();
@@ -30,7 +32,6 @@ public class TestPlanFolderWrapper {
 		m.marshal(entity, sw);
 
 		return sw.toString();
-
 	}
 
 }

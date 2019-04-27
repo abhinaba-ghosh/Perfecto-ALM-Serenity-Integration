@@ -11,7 +11,7 @@ import schemas.entities.Entity;
 import schemas.entities.Field;
 import schemas.entities.Fields;
 
-public class TestDesignWrapper {
+public class TestDesign {
 
 	public static String prepareXml(String parentTestId, String stepName, String description) throws Exception {
 

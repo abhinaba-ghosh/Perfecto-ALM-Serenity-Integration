@@ -15,12 +15,12 @@ import java.util.Properties;
 
 import org.pmw.tinylog.Logger;
 
-import helpers.Helper;
+import helpers.SystemHelper;
 
 public class PerfectoAPIHandler {
 
-	static Properties props = Helper
-			.readPropertiesFromFile(Helper.getCurrentDirectory() + "//config.properties");
+	static Properties props = SystemHelper
+			.readPropertiesFromFile(SystemHelper.getCurrentDirectory() + "//config.properties");
 
 	public static final String Perfecto_Token = props.getProperty("perfecto_security_token");
 	public static final String Secure_Host = props.getProperty("perfecto_secure_proxy_host");
@@ -99,7 +99,7 @@ public class PerfectoAPIHandler {
 
 	public static void writePerfectoReport(String response) {
 		BufferedWriter bWriter = null;
-		File reportFile = new File(Helper.getCurrentDirectory() + "//perfecto_report.json");
+		File reportFile = new File(SystemHelper.getCurrentDirectory() + "//perfecto_report.json");
 		if (reportFile.exists()) {
 			reportFile.delete();
 			try {

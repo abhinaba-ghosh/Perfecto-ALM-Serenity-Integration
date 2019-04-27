@@ -3,7 +3,7 @@ package components;
 import org.pmw.tinylog.Logger;
 
 import helpers.ALMCommonHelper;
-import schemas.wrapper.TestDesignWrapper;
+import schemas.wrapper.TestDesign;
 
 public class ALMTestDesignStepCreator {
 
@@ -18,7 +18,7 @@ public class ALMTestDesignStepCreator {
 			Logger.warn("Error response from alm: " + response_from_alm);
 			responseString = "ERROR_OCCURED";
 		} else {
-			String xmlContent = TestDesignWrapper.prepareXml(parnetTestCaseId, stepName, description);
+			String xmlContent = TestDesign.prepareXml(parnetTestCaseId, stepName, description);
 			String test_design_id = ALMCommonHelper.pushRequestMessageToALM(xmlContent, "design-steps");
 			Logger.info("newly created test design step id " + test_design_id);
 			responseString = test_design_id;

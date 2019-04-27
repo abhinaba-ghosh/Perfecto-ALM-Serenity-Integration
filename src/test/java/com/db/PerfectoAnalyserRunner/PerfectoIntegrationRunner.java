@@ -16,12 +16,12 @@ import com.db.PerfectoReportAnalyser.PerfectoAPIHandler;
 import com.db.PerfectoReportAnalyser.PerfectoMethodHelper;
 import com.db.PerfectoReportAnalyser.PerfectoReportParser;
 
-import helpers.Helper;
+import helpers.SystemHelper;
 
 public class PerfectoIntegrationRunner {
 
-	static Properties runner_props = Helper
-			.readPropertiesFromFile(Helper.getCurrentDirectory() + "//config.properties");
+	static Properties runner_props = SystemHelper
+			.readPropertiesFromFile(SystemHelper.getCurrentDirectory() + "//config.properties");
 
 	public static final String DigiZoomReportingUrl = runner_props.getProperty("perfecto_report_url");
 	public static final String testApplicationNameListedInALM = runner_props.getProperty("alm_application_name");

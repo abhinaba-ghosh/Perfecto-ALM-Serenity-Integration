@@ -29,7 +29,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import infrastructure.AlmConnector;
+import infrastructure.ALMConnector;
 import infrastructure.Constants;
 import infrastructure.Response;
 import infrastructure.RestConnector;
@@ -53,7 +53,7 @@ public class ALMCommonHelper {
 		NodeList node = (NodeList) path.compile("//Field[@Name=" + "\"" + nodeName + "\"" + "]/Value/text()")
 				.evaluate(doc, XPathConstants.NODESET);
 		for (int i = 0; i < node.getLength(); i++) {
-			test_id = node.item(i).getTextContent();
+			test_id = node.item(i).getNodeValue();
 		}
 
 		return test_id;
@@ -64,7 +64,7 @@ public class ALMCommonHelper {
 
 		String newlyCretedResourceId = "NO_ID_GENERATED";
 
-		AlmConnector alm = new AlmConnector();
+		ALMConnector alm = new ALMConnector();
 
 		RestConnector conn = RestConnector.getInstance();
 		conn.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);
@@ -101,11 +101,52 @@ public class ALMCommonHelper {
 		return newlyCretedResourceId;
 	}
 
+	public static String updateRequestMessageToALM(String xmlContent, String almEntity) throws Exception {
+
+		String newlyCretedResourceId = "NO_ID_GENERATED";
+
+		ALMConnector alm = new ALMConnector();
+
+		RestConnector conn = RestConnector.getInstance();
+		conn.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);
+
+		alm.login(Constants.USERNAME, Constants.PASSWORD);
+
+		conn.getQCSession();
+		String testconfigurl = conn.buildEntityCollectionUrl(almEntity);
+		Logger.info("testconfig url:" + testconfigurl);
+
+		Logger.info("request xml: " + xmlContent);
+
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		requestHeaders.put("Content-Type", "application/xml");
+		requestHeaders.put("Accept", "application/xml");
+		Response postedEntityResponse = conn.httpPut(testconfigurl, xmlContent.getBytes(), requestHeaders);
+
+		Logger.info("postedEntityResponse.getStatusCode():" + postedEntityResponse.getStatusCode());
+
+		if ((postedEntityResponse.getStatusCode() == 200) || (postedEntityResponse.getStatusCode() == 201)) {
+
+			newlyCretedResourceId = ALMCommonHelper.getNodeValueFromXmlString(postedEntityResponse.toString(), "id");
+			Logger.info("Newly created resource id is:" + newlyCretedResourceId);
+
+		} else {
+			Logger.error("response: " + postedEntityResponse.getFailure());
+			Logger.error("error response: " + postedEntityResponse.toString());
+
+		}
+
+		alm.logout();
+		alm = null;
+
+		return newlyCretedResourceId;
+	}
+
 	public static String isResouceAlreadyAvailable(String queryParam) throws Exception {
 
 		String responseString = "";
 
-		AlmConnector alm = new AlmConnector();
+		ALMConnector alm = new ALMConnector();
 
 		RestConnector conn = RestConnector.getInstance();
 		conn.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);
@@ -119,14 +160,11 @@ public class ALMCommonHelper {
 		URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(),
 				url.getQuery(), url.getRef());
 		testconfigurl = uri.toASCIIString();
-		// System.out.println("new testconfig url:" + testconfigurl);
 
 		Map<String, String> requestHeaders = new HashMap<String, String>();
 		requestHeaders.put("Content-Type", "application/xml");
 		requestHeaders.put("Accept", "application/xml");
 		Response postedEntityResponse = conn.httpGet(testconfigurl, null, requestHeaders);
-
-		// Logger.info("get response: " + postedEntityResponse.toString());
 
 		if (postedEntityResponse.toString().contains("TotalResults=\"0\"")) {
 			responseString = "No_ID_FOUND";
@@ -151,7 +189,7 @@ public class ALMCommonHelper {
 
 	public static String getResponse(String queryParam) throws Exception {
 
-		AlmConnector alm = new AlmConnector();
+		ALMConnector alm = new ALMConnector();
 
 		RestConnector conn = RestConnector.getInstance();
 		conn.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);
@@ -183,7 +221,7 @@ public class ALMCommonHelper {
 		final String LINE_FEED = "\r\n";
 		String filePath = filePathToAttach;
 
-		AlmConnector alm = new AlmConnector();
+		ALMConnector alm = new ALMConnector();
 
 		RestConnector con = RestConnector.getInstance();
 		con.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);
@@ -259,7 +297,7 @@ public class ALMCommonHelper {
 		final String LINE_FEED = "\r\n";
 		String atchName = attahmentName + ".url";
 
-		AlmConnector alm = new AlmConnector();
+		ALMConnector alm = new ALMConnector();
 
 		RestConnector con = RestConnector.getInstance();
 		con.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);
@@ -279,7 +317,7 @@ public class ALMCommonHelper {
 			HttpURLConnection httpConn = (HttpURLConnection) urlUpdateRunStepsURL.openConnection(proxy);
 
 			httpConn.setUseCaches(false);
-			httpConn.setDoOutput(true); // indicates POST method
+			httpConn.setDoOutput(true);
 			httpConn.setDoInput(true);
 			httpConn.setRequestProperty("Cookie", con.getCookieString());
 
@@ -333,7 +371,7 @@ public class ALMCommonHelper {
 
 	public static String deleteResource(String queryParam) throws Exception {
 
-		AlmConnector alm = new AlmConnector();
+		ALMConnector alm = new ALMConnector();
 
 		RestConnector conn = RestConnector.getInstance();
 		conn.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);

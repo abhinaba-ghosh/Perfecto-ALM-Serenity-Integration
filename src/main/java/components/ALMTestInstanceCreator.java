@@ -6,7 +6,7 @@ import java.util.Map;
 import org.pmw.tinylog.Logger;
 
 import helpers.ALMCommonHelper;
-import infrastructure.AlmConnector;
+import infrastructure.ALMConnector;
 import infrastructure.Constants;
 import infrastructure.Response;
 import infrastructure.RestConnector;
@@ -42,7 +42,7 @@ public class ALMTestInstanceCreator {
 
 		String newlyCretedResourceId = "NO_ID_GENERATED";
 
-		AlmConnector alm = new AlmConnector();
+		ALMConnector alm = new ALMConnector();
 
 		RestConnector conn = RestConnector.getInstance();
 		conn.init(new HashMap<String, String>(), Constants.HOST, Constants.DOMAIN, Constants.PROJECT);

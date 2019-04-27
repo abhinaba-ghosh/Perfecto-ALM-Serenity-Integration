@@ -3,7 +3,7 @@ package components;
 import org.pmw.tinylog.Logger;
 
 import helpers.ALMCommonHelper;
-import schemas.wrapper.TestSetWrapper;
+import schemas.wrapper.TestSet;
 
 public class ALMTestSetCreator {
 
@@ -19,7 +19,7 @@ public class ALMTestSetCreator {
 			responseString = "ERROR_OCCURED";
 		} else if (response_from_alm.equalsIgnoreCase("No_ID_FOUND")) {
 
-			String xmlContent = TestSetWrapper.prepareXml(parentFolderId, TestSetName, applicationName, TestPhase,
+			String xmlContent = TestSet.prepareXml(parentFolderId, TestSetName, applicationName, TestPhase,
 					TestStatus, description);
 			String testset_id = ALMCommonHelper.pushRequestMessageToALM(xmlContent, "test-sets");
 			Logger.info("newly created test set id:" + testset_id);

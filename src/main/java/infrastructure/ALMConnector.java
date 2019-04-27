@@ -28,7 +28,7 @@ import java.util.Map;
  *         versions like 12.0.
  *         </p>
  */
-public class AlmConnector {
+public class ALMConnector {
  
 	/**
 	 * <p>
@@ -59,7 +59,7 @@ public class AlmConnector {
 	 *            - a String providing the name of a project a user wants to log
 	 *            into.
 	 */
-	public AlmConnector(final String serverUrl, final String domain,
+	public ALMConnector(final String serverUrl, final String domain,
 			final String project) {
 		this.con = RestConnector.getInstance().init(
 				new HashMap<String, String>(), serverUrl, domain, project);
@@ -72,7 +72,7 @@ public class AlmConnector {
 	 * class RestConnector is keeping the connection details.
 	 * </p>
 	 */
-	public AlmConnector() {
+	public ALMConnector() {
 		this.con = RestConnector.getInstance();
 		
 	}

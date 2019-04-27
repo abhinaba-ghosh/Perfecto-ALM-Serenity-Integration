@@ -3,7 +3,7 @@ package components;
 import org.pmw.tinylog.Logger;
 
 import helpers.ALMCommonHelper;
-import schemas.wrapper.TestPlanFolderWrapper;
+import schemas.wrapper.TestPlanFolder;
 
 public class ALMTestPlanFolderCreator {
 
@@ -18,7 +18,7 @@ public class ALMTestPlanFolderCreator {
 			Logger.warn("Error response from alm: " + response_from_alm);
 			responseString = "ERROR_OCCURED";
 		} else if (response_from_alm.equalsIgnoreCase("No_ID_FOUND")) {
-			String xmlContent = TestPlanFolderWrapper.prepareXml(parnetFolderId, TestFolderName, description);
+			String xmlContent = TestPlanFolder.prepareXml(parnetFolderId, TestFolderName, description);
 			String test_folder_id = ALMCommonHelper.pushRequestMessageToALM(xmlContent, "test-folders");
 			Logger.info("newly created test design step id " + test_folder_id);
 			responseString = test_folder_id;

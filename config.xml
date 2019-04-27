@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+	<!-- Test Report Framework -->
+	<parameter name="Test Report Framework">
+		<param name="test_report_framework_type">junit</param>
+		<param name="test_report_read_mode">path</param>
+		<param name="test_report_location">./reports</param>
+		<param name="test_execution_driver">chrome</param>
+	</parameter>
+
+	<!-- Test Creation Decision -->
+	<parameter name="Test Creation Decision">
+		<param name="alm_test_case_operation">update</param>
+		<param name="alm_test_case_mapping_method">name</param>
+		<param name="alm_test_set_link_to_test_case">y</param>
+	</parameter>
+
+	<!-- ALM.Net Access Credentials -->
+	<parameter name="ALM.Net">
+		<param name="alm_host">https://alm.intranet.db.com/qcbin</param>
+		<param name="alm_port">443</param>
+		<param name="alm_domain">ALM_CROSS_DOMAIN</param>
+		<param name="alm_project">PCC_Ger</param>
+		<param name="alm_secure_proxy_host">isa-dev-proxy.intranet.db.com</param>
+		<param name="alm_secure_proxy_port">8080</param>
+	</parameter>
+
+	<!-- This part reflects the test case fields within the ALM.Net module "Test 
+		Plan". These fields are needed if a new test case is created or an existing 
+		one needs to be updated. NOTE: Following run "MUST" fields of a test case 
+		will be updated through the code and based on the current status. - Test 
+		Case Name - Test Mode -->
+	<test_plan>
+		<test_case>
+			<field name="alm_test_application">
+				<gui_element_name>Application</gui_element_name>
+				<db_fld_name>user-template-01</db_fld_name>
+				<db_fld_value>-legacy--undefined-</db_fld_value>
+			</field>
+			<field name="alm_test_phase">
+				<gui_element_name>Test Phase</gui_element_name>
+				<db_fld_name>user-template-02</db_fld_name>
+				<db_fld_value>SIT</db_fld_value>
+			</field>
+			<field name="alm_test_status">
+				<gui_element_name>Status</gui_element_name>
+				<db_fld_name>status</db_fld_name>
+				<db_fld_value>Design</db_fld_value>
+			</field>
+			<field name="alm_test_priority">
+				<gui_element_name>Priority</gui_element_name>
+				<db_fld_name>user-template-06</db_fld_name>
+				<db_fld_value>C-Medium</db_fld_value>
+			</field>
+			<field name="alm_test_automatable">
+				<gui_element_name>Automatable</gui_element_name>
+				<db_fld_name>user-template-03</db_fld_name>
+				<db_fld_value>Automated</db_fld_value>
+			</field>
+			<field name="alm_test_proposed_for_reg_test">
+				<gui_element_name>Proposed for Regression Test</gui_element_name>
+				<db_fld_name>user-template-09</db_fld_name>
+				<db_fld_value>Y</db_fld_value>
+			</field>
+			<field name="alm_test_program">
+				<gui_element_name>Program</gui_element_name>
+				<db_fld_name>user-template-13</db_fld_name>
+				<db_fld_value>[not defined]</db_fld_value>
+			</field>
+			<field name="alm_test_created_for_version">
+				<gui_element_name>Created for Version</gui_element_name>
+				<db_fld_name>user-template-04</db_fld_name>
+				<db_fld_value>[not defined]</db_fld_value>
+			</field>
+			<field name="alm_test_type">
+				<gui_element_name>Test Type</gui_element_name>
+				<db_fld_name>user-template-08</db_fld_name>
+				<db_fld_value>Functional Test</db_fld_value>
+			</field>
+			<field name="alm_test_project">
+				<gui_element_name>Project</gui_element_name>
+				<db_fld_name>user-template-05</db_fld_name>
+				<db_fld_value>[not defined]</db_fld_value>
+			</field>
+			<field name="alm_test_classification">
+				<gui_element_name>Classification</gui_element_name>
+				<db_fld_name>user-template-24</db_fld_name>
+				<db_fld_value>Internal</db_fld_value>
+			</field>
+			<field name="alm_test_mode">
+				<gui_element_name>Test Mode</gui_element_name>
+				<db_fld_name>subtype-id</db_fld_name>
+				<db_fld_value>MANUAL</db_fld_value>
+			</field>
+			<field name="alm_test_description">
+				<gui_element_name>Description</gui_element_name>
+				<db_fld_name>description</db_fld_name>
+				<db_fld_value>***created by alm rest connector***</db_fld_value>
+			</field>
+			<field name="alm_test_owner">
+				<gui_element_name>Test Owner</gui_element_name>
+				<db_fld_name>owner</db_fld_name>
+				<db_fld_value>tech_cts_remoteexec</db_fld_value>
+			</field>
+		</test_case>
+	</test_plan>
+
+	<!-- This part reflects the test run fields within the ALM.Net module "Test 
+		Lab". These fields are needed if a new run is created or an existing one 
+		needs to be updated. NOTE: Following run "MUST" fields of a run will be updated 
+		through the code and based on the current status. - Status - Tester - Test 
+		Set: Test Set Name - Test Instance -->
+	<test_lab>
+		<test_run>
+			<field name="alm_run_classification">
+				<gui_element_name>Run Classification</gui_element_name>
+				<db_fld_name>user-template-02</db_fld_name>
+				<db_fld_value>Internal</db_fld_value>
+			</field>
+		</test_run>
+	</test_lab>
+
+	<!-- Logging -->
+	<parameter name="Logging">
+		<param name="tinylog.writer2.filename">alm_rest_connector.log</param>
+		<param name="tinylog.format">{date:yyyy-mm-dd hh:mm:ss}: {level}:
+			{class}.{method}(): {message}
+		</param>
+	</parameter>
+</configuration>
